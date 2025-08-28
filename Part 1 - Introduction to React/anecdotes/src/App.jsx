@@ -14,7 +14,28 @@ const Votes = ({ votesAmt }) => {
   }
   else{
     return(
-      <p>has {votesAmt} votes</p>
+      <div>has {votesAmt} votes</div>
+    )
+  }
+}
+
+const MostVotes = ({ anecdotes, votes }) => {
+  const maxVotes = Math.max(...votes)
+  console.log(anecdotes)
+  if (maxVotes === 0){
+    return;
+  }
+  
+  else {
+    const idx = votes.indexOf(maxVotes)
+    return(
+      <div>
+        <h1>Anecdote with most votes</h1>
+        <div>
+          {anecdotes[idx]}
+        </div>
+        <Votes votesAmt={maxVotes}/>
+      </div>
     )
   }
 }
@@ -48,6 +69,7 @@ const App = () => {
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div>
         {anecdotes[selected]}
       </div>
@@ -56,6 +78,7 @@ const App = () => {
         <Button onClick={() => handleVote(selected)} text='vote' />
         <Button onClick={handleNextAnecdote} text='next anecdote' />
       </div>
+      <MostVotes anecdotes={anecdotes} votes={votes}/>
     </div>
   )
 }
