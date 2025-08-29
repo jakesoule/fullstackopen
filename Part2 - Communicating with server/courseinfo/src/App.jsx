@@ -40,8 +40,7 @@ const App = () => {
     ]
   }
 
-  let total = 0
-  course.parts.map(part => total += part.exercises)
+  const total = course.parts.reduce((s, p) => s + p.exercises, 0)
 
   return (
     <div>
