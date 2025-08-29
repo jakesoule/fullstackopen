@@ -31,11 +31,24 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
 
-  return <Course course={course} />
+  let total = 0
+  course.parts.map(part => total += part.exercises)
+
+  return (
+    <div>
+      <Course course={course} />
+      <p><b>total of {total} exercises</b></p>
+    </div>
+  )
 }
 
 export default App
